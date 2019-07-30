@@ -1,0 +1,10 @@
+name: escc_project
+title:
+username:
+account: tcgi
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 859053
+bundleId: 2109209
+url: https://tcgi.shinyapps.io/escc_project/
+when: 1558862286.18708
