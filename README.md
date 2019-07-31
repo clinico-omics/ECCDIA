@@ -2,130 +2,10 @@
 ### ECCDIA Description
 ECCDIA: an interactive web tool for comprehensive clinical and survival data analysis of esophageal cancer  (r version). The Esophageal Cancer Clinical Data Interactive Analysis (ECCDIA, <http://47.103.50.107:3838/ECCDIA/>) was developed to provide basic data analysis, survival analysis, and nomogram of the overall group and subgroup of 77,273 EC patients. The basic data analysis contained clinical factor ratio distribution analysis, Sankey plot analysis for relationships between clinical factors, and a map of clinical factors’ distribution. The survival analysis included Kaplan-Meier (K-M) analysis and Cox analysis for different subgroups of EC patients. The nomogram module enabled clinicians to precisely predict different subgroups of EC patients’ survival probability.
 
-### parameter description
+###  Abberation Table
 
-#### summary
-
-Show 10/25/50/100: 改变显示条目数量
-
-Clinical_Factor: 显示了所有可供选择的Clinical Factors
-
-Group: Clinical Factor下相应的条目
-
-No. Patients: 相应Group下的病例数目
-
-Search: 您可以搜索相关关键词包括Clinical Factor/Group 
-
-CLICK THE FIRST LINE: 颠倒显示顺序
-
-#### clinical ratio
-
-Ratio/Num：更改右图中频数分布图显示模式为Ratio/Number
-
-Clinical Factors: 选择您需要分析其分布的Clinical Factor
-
-Choose subgroup of data: 选择您需要分析的Clinical Factor在某一特定Subgroup中的分布，例：通过设定subgroup为[Sex，Female]，您可以选择只包含女性的数据
-
-Legend Position: 选择图例标签显示在频数分布图的右侧(v)，或左下方(h)
-
-X&Y tick size: 更改X轴及Y轴上的数字、字母字符大小(11-30)
-
-X&Y Title font: 更改X轴及Y轴上的标题字符大小(11-30)
-
-Legend lable size: 更改图例标签及文字大小(11-30)
-
-Margin: 更改分布图周围空白边缘大小
-
-#### sankey plot
-
-Horizontal or vertical: 更改sankey plot为水平/垂直显示
-
-Clinical factors: 选择需要绘制sankey plot进行分析的clinical factors(可选择2-3个clinical factors)
-
-Choose subgroup of data: 选择您需要分析的clinical factors在特定的subgroup中的分布
-
-Lable size: 更改lable字符大小
-
-#### survival rate
-
-OS or CSS：选择需要分析Overall Survival(OS) 或Cancer Specific Survival(CSS)
-
-Survival rate: 选择需要分析的生存时长(1-10年)
-
-Choose clincal factor: 选择需要显示在survival rate图上的clinical factors and subgroups
-
-Legend Position: 选择图例标签显示在频数分布图的右侧(v)，或左下方(h)
-
-Line size：改变生存率曲线的粗细
-
-X&Y tick size: 更改X轴及Y轴上的数字、字母字符大小(11-30)
-
-X&Y title font: 更改X轴及Y轴上的标题字符大小(11-30)
-
-Legend lable size: 更改图例标签及文字大小(11-30)
-
-Margin: 更改分布图周围空白边缘大小
-
-#### KM Analysis
-
-**Common parameters:**
-
-OS or CSS：选择需要分析Overall Survival(OS) 或Cancer Specific Survival(CSS)的KM Analysis
-
-Clincal factor: 选择需要进行KM Analysis的clinical factors 
-
-Choose subgroup of data: 选择需要进行KM Analysis的subgroup
-
-**Static parameters:**
-
-Survival median line: 选择survival median line的显示为none/hv/h/v
-
-Risk table: 勾选更改是否显示Risk table
-
-Necesor plot: 勾选更改是否显示Necesor plot
-
-Main fontsize (title/x/y/ticks): 更改KM analysis中主要字体大小包括标题、xy轴、标记(15-40)
-
-Table fontsize: 更改risk table上的字符大小(5-30)
-
-Ncensor plot height: 更改Ncensor plot的高度
-
-Line size: 改变线的粗细
-
-**Dynamic parameters:**
-
-Risk table:勾选更改是否显示Risk table
-
-Main fontsize (title/x/y/ticks): 更改dynamic survival analysis中主要字体大小包括标题、xy轴、标记(15-40)
-
-Table fontsize: 更改risk table上的字符大小(5-30)
-
-Table height: 更改risk table的高度(0.1-1)
-
-Line width: 改变线的粗细
-
-#### cox analysis
-
-OS or CSS：选择需要分析Overall Survival(OS) 或Cancer Specific Survival(CSS)的cox analysis
-
-univariate or multivariate: 选择需要进行univariate/multivariate analysis
-
-cox subgroup: 选择需要进行cos analysis的subgroup
-
-#### nomogram
-
-OS or CSS：选择需要分析Overall Survival(OS) 或Cancer Specific Survival(CSS)的nomogram
-
-Nomogram subgroup: 选择需要分析的subgroup，不同的subgroup参与nomogram预测模型的临床参数会发生改变
-
-#### map
-
-Clincal factor: 能够在map上面动态出现的临床参数信息
-
-###  Abberation table
-
-| Clinical Factor (raw name) | Clinical Factor (raw)                                        | Clinical Factor (redefine) | Clinical Factor (redefine name)                              |
-| -------------------------- | ------------------------------------------------------------ | -------------------------- | ------------------------------------------------------------ |
+| Clinical Factor (Raw Name) | Clinical Factor (Raw)                                        | Clinical Factor (Redefined) | Clinical Factor (Redefine Name)                              |
+| :-: | :-: | :-: | :-: |
 | Sex                        | Male                                                         | Male                       | Sex                                                          |
 |                            | Female                                                       | Female                     |                                                              |
 | Primary Site               | C15.0-Cervical esophagus                                     | CE                         | Primary_Site                                                 |
@@ -215,4 +95,7 @@ Clincal factor: 能够在map上面动态出现的临床参数信息
 
 
 ### Author(s)
+
+Jingcheng Yang (yjcyxky@163.com)
+
 Jun Shang (shangjunv@163.com)
