@@ -35,7 +35,7 @@ shinyServer(function(input, output, session){
       ) %>%
       colorbar() %>%
       layout(
-        title = 'SEER ESCC data',
+        title = 'SEER ESCC Data',
         geo = list(
           scope = 'usa',
           projection = list(type = 'albers usa'),
@@ -50,14 +50,14 @@ shinyServer(function(input, output, session){
   observe({
     if(input$ratio_subgroup == 'all'){
       updateSelectInput(session, "ratio_group_name",
-                        label = 'all',
+                        label = 'All',
                         choices = 'all',
                         selected = 'all'
       )
     } else {
       x <- sort(unique(dataSurOS()[, input$ratio_subgroup]))
       updateSelectInput(session, "ratio_group_name",
-                        label = paste("subgroup of ", input$ratio_subgroup),
+                        label = paste("Subgroup of ", input$ratio_subgroup),
                         choices = x,
                         selected = x[1]
       )
@@ -92,14 +92,14 @@ shinyServer(function(input, output, session){
       titlefont = list(size = input$bar_plot_titlefont)
     )
     yaxis_rat <- list(
-      title = 'ratio',
+      title = 'Ratio',
       automargin = TRUE,
       tickfont =  list(size = input$bar_plot_xy_tickfont), 
       titlefont = list(size = input$bar_plot_titlefont)
     )
     
     yaxis_fre <- list(
-      title = 'frequency',
+      title = 'Frequency',
       automargin = TRUE,
       tickfont =  list(size = input$bar_plot_xy_tickfont), 
       titlefont = list(size = input$bar_plot_titlefont)
@@ -110,13 +110,13 @@ shinyServer(function(input, output, session){
     
     if(input$RF_switch == TRUE){
       plot_ly(mat_ratio, x = ~var_a, y = ~frequency, type = 'bar', color = ~group,colors = colors, name = ~group) %>%
-        layout(title = paste('clinical factor ratio distribution \n', '(', input$ratio_subgroup, ':', input$ratio_group_name, 'data', ')', sep = ' ') , 
+        layout(title = paste('Clinical Factor Ratio Distribution \n', sep = ' ') , 
                font = list(size = input$bar_plot_titlefont),  xaxis = xaxis, yaxis = yaxis_fre, legend = legend, 
                margin = list(l = input$bar_plot_margin, t = input$bar_plot_margin, r = input$bar_plot_margin,  b = input$bar_plot_margin),
                barmode = 'stack')
     } else {
       plot_ly(mat_ratio, x = ~var_a, y = ~ratio, type = 'bar', color = ~group,colors = colors, name = ~group) %>%
-        layout(title = paste('clinical factor ratio distribution \n', '(', input$ratio_subgroup, ':', input$ratio_group_name, 'data', ')', sep = ' ') , 
+        layout(title = paste('Clinical Factor Ratio Distribution \n', sep = ' ') , 
                font = list(size = input$bar_plot_titlefont), xaxis = xaxis, yaxis = yaxis_rat, legend = legend, 
                margin = list(l = input$bar_plot_margin, t = input$bar_plot_margin, r = input$bar_plot_margin,  b = input$bar_plot_margin),
                barmode = 'stack')
@@ -128,14 +128,14 @@ shinyServer(function(input, output, session){
   observe({
     if(input$san_subgroup == 'all'){
       updateSelectInput(session, "san_group_name",
-                        label = 'all',
+                        label = 'All',
                         choices = 'all',
                         selected = 'all'
       )
     } else {
       x <- sort(unique(dataSurOS()[, input$san_subgroup]))
       updateSelectInput(session, "san_group_name",
-                        label = paste("subgroup of ", input$san_subgroup),
+                        label = paste("Subgroup of ", input$san_subgroup),
                         choices = x,
                         selected = x[1]
       )
@@ -187,14 +187,14 @@ shinyServer(function(input, output, session){
   observe({
     if(input$srate_var == 'all'){
       updateSelectizeInput(session, "sur_rate_group_name",
-                        label = 'all',
+                        label = 'All',
                         choices = 'all',
                         selected = 'all'
       )
     } else {
       x <-  sort(unique(dataSurOS()[, input$srate_var]))
       updateSelectizeInput(session, "sur_rate_group_name",
-                        label = paste("subgroup of ", input$srate_var),
+                        label = paste("Subgroup of ", input$srate_var),
                         choices = x,
                         options = list(maxItems = 10, placeholder = 'Select a name'),
                         selected = c(x[1], x[2])
@@ -219,13 +219,13 @@ shinyServer(function(input, output, session){
   ###figure
   output$sur_rate_plot <- renderPlotly({
     xaxis <- list(
-      title = 'year',
+      title = 'Year',
       automargin = TRUE,
       tickfont =  list(size = input$line_plot_xy_tickfont), 
       titlefont = list(size = input$line_plot_titlefont)
     )
     yaxis <- list(
-      title = 'survival rate',
+      title = 'Survival Rate',
       automargin = TRUE,
       tickfont =  list(size = input$line_plot_xy_tickfont), 
       titlefont = list(size = input$line_plot_titlefont)
@@ -251,14 +251,14 @@ shinyServer(function(input, output, session){
   observe({
     if(input$subgroup == 'all'){
       updateSelectInput(session, "group_name",
-                        label = 'all',
+                        label = 'All',
                         choices = 'all',
                         selected = 'all'
       )
     } else {
       x <-  sort(unique(dataSurOS()[, input$subgroup]))
       updateSelectInput(session, "group_name",
-                        label = paste("subgroup of ", input$subgroup),
+                        label = paste("Subgroup of ", input$subgroup),
                         choices = x,
                         selected = x[1]
       )
@@ -534,13 +534,13 @@ shinyServer(function(input, output, session){
   })  
 
   output$surv_text1 <- renderText({
-    paste0('1 year survival probability: ', paste(round(100*SurRate()[1], 2), "%", sep=""), sep = '')
+    paste0('1 Year Survival Probability: ', paste(round(100*SurRate()[1], 2), "%", sep=""), sep = '')
   })
   output$surv_text3 <- renderText({
-    paste0('3 year survival probability: ', paste(round(100*SurRate()[2], 2), "%", sep=""), sep = '')
+    paste0('3 Year Survival Probability: ', paste(round(100*SurRate()[2], 2), "%", sep=""), sep = '')
   })
   output$surv_text5 <- renderText({
-    paste0('5 year survival probability: ', paste(round(100*SurRate()[3], 2), "%", sep=""), sep = '')
+    paste0('5 Year Survival Probability: ', paste(round(100*SurRate()[3], 2), "%", sep=""), sep = '')
   })
   
   output$OS_nom <- renderPlot({

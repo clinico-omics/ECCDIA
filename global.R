@@ -152,7 +152,7 @@ PreSanMat <- function(rt_san, var_list, color_type){
     names(san_mat_list) <- c('label', 'color', 'mat')
     return(san_mat_list)
   } else {
-    stop('you can choose two or three clinical factors')
+    stop('You can choose two or three clinical factors')
   }
 }
 
@@ -194,7 +194,7 @@ SurvKM <- function(fit_list, risk_table, ncensor_plot, main_size = main_size, su
                    table_height, ncensor_height){
   
   ggsurvplot(fit_list[[1]],  title = Gnam, pval = fit_list[[2]], 
-             conf.int = FALSE, pval.size = 10, pval.coord = c(0, 0), xlab = "Time in days",
+             conf.int = FALSE, pval.size = 10, pval.coord = c(0, 0), xlab = "Time in Days",
              ggtheme = theme_survminer(font.title = main_size,  font.subtitle = main_size, font.caption = main_size,
                                        font.x = main_size, font.y = main_size, font.tickslab = main_size, font.legend= main_size), 
              size = line_size, #change line size
@@ -236,7 +236,7 @@ MainSurRate <- function(cli_fac, data, sur_rate = 1){
       }
       
       if(sur_rate >  min(unlist(gtime_list))/12){
-        stop(paste('the max survival time of subgroup is ',    min(unlist(gtime_list))/12, ' year', sep = ''))
+        stop(paste('The max survival time of subgroup is ',    min(unlist(gtime_list))/12, ' year', sep = ''))
       } else {
         sur_year <-  summary(fit, times = sur_rate*12)
       }
@@ -279,7 +279,7 @@ CountTP <- function(nom, var_name, var_value,  con_var = TRUE){
     var_point <- value_point[which(names(value_point) == var_value)]
     return(var_point)
   } else {
-    stop('please set con_var ture or false')
+    stop('Please set con_var ture or false')
   }
 }
 
@@ -316,19 +316,19 @@ theme_map <- theme(
 PlotCal <- function(cal1, cal2, cal3){
   par(cex = 1)
   plot(cal1, subtitles = FALSE, lwd = 4, lty = 1, errbar.col = 'steelblue', xlim = c(0, 1), ylim = c(0, 1), 
-       xlab = 'Predicted over survival', ylab = 'Observed over survival', col = 'steelblue')
+       xlab = 'Predicted Over Survival', ylab = 'Observed Over Survival', col = 'steelblue')
   lines(cal1[, c("mean.predicted", "KM")], type = 'b',lwd = 4, col = 'steelblue')
   par(new=TRUE)
   plot(cal2, subtitles = FALSE, lwd = 4, lty = 1, errbar.col = 'orange1', xlim = c(0, 1), ylim = c(0, 1), 
-       xlab = 'Predicted over survival', ylab = 'Observed over survival', col = "orange1")
+       xlab = 'Predicted Over Survival', ylab = 'Observed Over Survival', col = "orange1")
   lines(cal2[, c("mean.predicted", "KM")], type = 'b',lwd = 4, col = "orange1")
   par(new=TRUE)
   plot(cal3, subtitles = FALSE, lwd = 4, lty = 1, errbar.col = 'plum3', xlim = c(0, 1), ylim = c(0, 1), 
-       xlab = 'Predicted over survival', ylab = 'Observed over survival', col = "plum3")
+       xlab = 'Predicted Over Survival', ylab = 'Observed Over Survival', col = "plum3")
   lines(cal3[, c("mean.predicted", "KM")], type = 'b',lwd = 4, col = "plum3")
   lines(c(-1:2), c(-1:2), lty = 1, lwd = 2, col = 'grey')
   legend("bottomright", 
-         legend=c('nomogram OS = observed OS', '1 year over survival probability', '3 year over survival probability', '5 year over survival probability'),
+         legend=c('Nomogram OS = Observed OS', '1-Year Over Survival Probability', '3-Year Over Survival Probability', '5-Year Over Survival Probability'),
          col = c('grey', 'steelblue', 'orange1', 'plum3'), bty = "n", lty = 1, lwd = 5)
 }
 
