@@ -10,17 +10,21 @@ sidebar <- dashboardSidebar(
               menuItem("Cox Analysis", tabName="cox", icon = icon("table")),
               menuItem("Nomogram", tabName="nomogram", icon = icon("align-center")),
               menuItem("Map", icon=icon("map"),
-                       menuSubItem('Data explorer', tabName = 'explorer'),
-                       menuSubItem('Interactive map', tabName = "map")), 
+                       menuSubItem('Data Explorer', tabName = 'explorer'),
+                       menuSubItem('Interactive Map', tabName = "map")), 
               menuItem("README", tabName = "readme", icon = icon("mortar-board"))))
 
 body <- dashboardBody(
+  tags$head(
+    tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
+  ),
+
   tabItems(
     #summary
     tabItem(tabName = "summary",
             box(width = NULL, status = "primary", solidHeader = TRUE, title = "Summary", 
                 h4(style = "text-align: center", "The Esophageal Cancer Clinical Data Interactive Analysis (ECCDIA)"),
-                p(style = "text-align: justify","ECCDIA: an interactive web tool for comprehensive clinical and survival data analysis of esophageal cancer  (r version). The Esophageal Cancer Clinical Data Interactive Analysis (ECCDIA, <http://webapps.3steps.cn/ECCDIA/>) was developed to provide basic data analysis, survival analysis, and nomogram of the overall group and subgroup of 77,273 EC patients. The basic data analysis contained clinical factor ratio distribution analysis, Sankey plot analysis for relationships between clinical factors, and a map of clinical factors’ distribution. The survival analysis included Kaplan-Meier (K-M) analysis and Cox analysis for different subgroups of EC patients. The nomogram module enabled clinicians to precisely predict different subgroups of EC patients’ survival probability."),
+                p(style = "text-align: justify", "ECCDIA: an interactive web tool for comprehensive clinical and survival data analysis of esophageal cancer  (r version). The Esophageal Cancer Clinical Data Interactive Analysis (ECCDIA, <http://webapps.3steps.cn/ECCDIA/>) was developed to provide basic data analysis, survival analysis, and nomogram of the overall group and subgroup of 77,273 EC patients. The basic data analysis contained clinical factor ratio distribution analysis, Sankey plot analysis for relationships between clinical factors, and a map of clinical factors’ distribution. The survival analysis included Kaplan-Meier (K-M) analysis and Cox analysis for different subgroups of EC patients. The nomogram module enabled clinicians to precisely predict different subgroups of EC patients’ survival probability."),
                 br(),
                 DTOutput('summary'))),
     
@@ -68,11 +72,11 @@ body <- dashboardBody(
                                fluidRow(
                                column(12, strong('Choose Subgroup of Data'),
                                       fluidRow(
-                                        column(width = 6, selectInput(inputId = "ratio_subgroup",
+                                        column(width = 12, selectInput(inputId = "ratio_subgroup",
                                                                       label = NULL,
                                                                       c('all', CF),
                                                                       selected =  'all')),
-                                        column(width = 6,  selectInput(inputId = "ratio_group_name", label = NULL,
+                                        column(width = 12,  selectInput(inputId = "ratio_group_name", label = NULL,
                                                                        c('all')))))),
                                selectInput("barplot_r_legend_pos", 
                                            label = "Legend Position:",
@@ -111,11 +115,11 @@ body <- dashboardBody(
                              fluidRow(
                                column(12, strong('Choose Subgroup of Data'),
                                       fluidRow(
-                                        column(width = 6, selectInput(inputId = "san_subgroup",
+                                        column(width = 12, selectInput(inputId = "san_subgroup",
                                                                       label = NULL,
                                                                       c('all', 'Year', CF),
                                                                       selected =  'all')),
-                                        column(width = 6,  selectizeInput(inputId = "san_group_name", label = NULL,
+                                        column(width = 12,  selectizeInput(inputId = "san_group_name", label = NULL,
                                                                        c('all')))))),
                              sliderInput("san_label_tickfont", "Label Size:",
                                          min = 10, max = 40, value = 20, step = 1)))),
@@ -181,11 +185,11 @@ body <- dashboardBody(
                                fluidRow(
                                  column(12, strong('Choose Subgroup of Data'),
                                         fluidRow(
-                                          column(width = 6, selectInput(inputId = "subgroup",
+                                          column(width = 12, selectInput(inputId = "subgroup",
                                                                         label = NULL,
                                                                         c('all', CF),
                                                                         selected =  'all')),
-                                          column(width = 6,  selectInput(inputId = "group_name", label = NULL,
+                                          column(width = 12,  selectInput(inputId = "group_name", label = NULL,
                                                                          c('all')))))))),
                tabBox(width = 12, 
                       tabPanel(h4("Static Parameters"),
@@ -385,7 +389,7 @@ body <- dashboardBody(
                                               selected = "Married"), width = 3, solidHeader = TRUE))), 
    
     column(width = 12,
-           box(width = NULL, height = "200px", 
+           box(width = NULL, height = "145px", 
                h4(
                  withSpinner(textOutput("surv_text1")),
                  withSpinner(textOutput("surv_text3")),
@@ -413,4 +417,6 @@ body <- dashboardBody(
 dashboardPage(
   dashboardHeader(title = "ECCDIA"),
   sidebar,
-  body)
+  body,
+  title = "ECCDIA | The Esophageal Cancer Clinical Data Interactive Analysis",
+  skin = "blue")

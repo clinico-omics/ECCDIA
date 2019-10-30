@@ -23,7 +23,7 @@ shinyServer(function(input, output, session){
   
   ###output
   output$data_map = renderDT(
-    dataMap()
+    dataMap(), escape=FALSE
   )
   
   ###figure
