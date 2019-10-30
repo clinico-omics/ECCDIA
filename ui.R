@@ -491,7 +491,7 @@ body <- dashboardBody(
   tabItem(
     tabName = "readme",
     withMathJax(), 
-    includeMarkdown("read_me.md")
+    includeMarkdown("README.md")
   )
   )
 )
