@@ -26,12 +26,13 @@ body <- dashboardBody(
                 h4(style = "text-align: center", "The Esophageal Cancer Clinical Data Interactive Analysis (ECCDIA)"),
                 p(style = "text-align: justify", "ECCDIA: an interactive web tool for comprehensive clinical and survival data analysis of esophageal cancer  (r version). The Esophageal Cancer Clinical Data Interactive Analysis (ECCDIA, <http://webapps.3steps.cn/ECCDIA/>) was developed to provide basic data analysis, survival analysis, and nomogram of the overall group and subgroup of 77,273 EC patients. The basic data analysis contained clinical factor ratio distribution analysis, Sankey plot analysis for relationships between clinical factors, and a map of clinical factors’ distribution. The survival analysis included Kaplan-Meier (K-M) analysis and Cox analysis for different subgroups of EC patients. The nomogram module enabled clinicians to precisely predict different subgroups of EC patients’ survival probability."),
                 br(),
+                downloadButton("downloadSummaryData", "Download"),
                 DTOutput('summary'))),
     
     #map
     tabItem(tabName = "explorer",
     box(width = NULL, status = "primary", solidHeader = TRUE, title = "Data Map", 
-        br(),br(),
+        downloadButton("downloadDataMap", "Download"),
         div(style = 'overflow-x: scroll', withSpinner(DTOutput('data_map'))))),
     
   tabItem(
@@ -167,7 +168,7 @@ body <- dashboardBody(
                box(width = NULL, withSpinner(plotlyOutput("sur_rate_plot", height = "600px")), collapsible = TRUE,
                    title = "Survival Rate", status = "primary", solidHeader = TRUE),
                box(width = NULL, status = "primary", solidHeader = TRUE, title = "Survival Rate Table",
-                   br(),br(),
+                   downloadButton("downloadSurvivalData", "Download"),
                    div(style = 'overflow-x: scroll', DTOutput('pop_rate_tab')))))),
     
     #km analysis
@@ -250,15 +251,15 @@ body <- dashboardBody(
                                          selected = 'ALL')))),
       column(width = 9,
              box(width = NULL, status = "primary", solidHeader = TRUE, title = "Train",
-                 br(),br(),
+                 downloadButton("downloadTrainCoxData", "Download"),
                  div(style = 'overflow-x: scroll', DTOutput('cox_os_train',  width = "100%"))
              ),
              box(width = NULL, status = "primary", solidHeader = TRUE, title = "Test",
-                 br(),br(),
+                 downloadButton("downloadTestCoxData", "Download"),
                  div(style = 'overflow-x: scroll', DTOutput('cox_os_test',  width = "100%"))
              ),
              box(width = NULL, status = "primary", solidHeader = TRUE, title = "All",
-                 br(),br(),
+                 downloadButton("downloadAllCoxData", "Download"),
                  div(style = 'overflow-x: scroll', DTOutput('cox_os_all',  width = "100%")))))),
   
   #nomogram

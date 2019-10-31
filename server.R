@@ -14,6 +14,16 @@ shinyServer(function(input, output, session){
   output$summary = renderDT(
     dataSummary()
   )
+
+  # Downloadable csv of selected dataset ----
+  output$downloadSummaryData <- downloadHandler(
+    filename = function() {
+      paste("summary", ".csv", sep = "")
+    },
+    content = function(file) {
+      write.csv(dataSummary(), file, row.names = FALSE)
+    }
+  )
   
   ##################map######################
   ###data
@@ -24,6 +34,16 @@ shinyServer(function(input, output, session){
   ###output
   output$data_map = renderDT(
     dataMap(), escape=FALSE
+  )
+
+  # Downloadable csv of selected dataset ----
+  output$downloadDataMap <- downloadHandler(
+    filename = function() {
+      paste("data-map", ".csv", sep = "")
+    },
+    content = function(file) {
+      write.csv(dataMap(), file, row.names = FALSE)
+    }
   )
   
   ###figure
@@ -246,6 +266,16 @@ shinyServer(function(input, output, session){
   output$pop_rate_tab = renderDT(
     dataSurRate()
   )
+
+  # Downloadable csv of selected dataset ----
+  output$downloadSurvivalData <- downloadHandler(
+    filename = function() {
+      paste("survival-rate-table", ".csv", sep = "")
+    },
+    content = function(file) {
+      write.csv(dataSurRate(), file, row.names = FALSE)
+    }
+  )
   
   ##############KM survival analysis#############
   observe({
@@ -339,6 +369,28 @@ shinyServer(function(input, output, session){
     }
   )
   
+  # Downloadable csv of selected dataset ----
+  output$downloadTrainCoxData <- downloadHandler(
+    filename = function() {
+      paste("cox-analysis-train-data", ".csv", sep = "")
+    },
+    content = function(file) {
+      if(input$Cox_OC_switch == 'OS'){
+        if(input$UM_switch == 'uvm'){
+          write.csv(coxUvmOSData()[[1]], file, row.names = FALSE)
+        } else {
+          write.csv(coxMvmOSData()[[1]], file, row.names = FALSE)
+        }
+      } else {
+        if(input$UM_switch == 'uvm'){
+          write.csv(coxUvmCSSData()[[1]], file, row.names = FALSE)
+        } else {
+          write.csv(coxMvmCSSData()[[1]], file, row.names = FALSE)
+        }
+      }
+    }
+  )
+
   output$cox_os_test = renderDT(
     if(input$Cox_OC_switch == 'OS'){
       if(input$UM_switch == 'uvm'){
@@ -351,6 +403,28 @@ shinyServer(function(input, output, session){
         coxUvmCSSData()[[2]]
       } else {
         coxMvmCSSData()[[2]]
+      }
+    }
+  )
+
+  # Downloadable csv of selected dataset ----
+  output$downloadTestCoxData <- downloadHandler(
+    filename = function() {
+      paste("cox-analysis-test-data", ".csv", sep = "")
+    },
+    content = function(file) {
+      if(input$Cox_OC_switch == 'OS'){
+        if(input$UM_switch == 'uvm'){
+          write.csv(coxUvmOSData()[[2]], file, row.names = FALSE)
+        } else {
+          write.csv(coxMvmOSData()[[2]], file, row.names = FALSE)
+        }
+      } else {
+        if(input$UM_switch == 'uvm'){
+          write.csv(coxUvmCSSData()[[2]], file, row.names = FALSE)
+        } else {
+          write.csv(coxMvmCSSData()[[2]], file, row.names = FALSE)
+        }
       }
     }
   )
@@ -367,6 +441,28 @@ shinyServer(function(input, output, session){
         coxUvmCSSData()[[3]]
       } else {
         coxMvmCSSData()[[3]]
+      }
+    }
+  )
+
+  # Downloadable csv of selected dataset ----
+  output$downloadAllCoxData <- downloadHandler(
+    filename = function() {
+      paste("cox-analysis-all-data", ".csv", sep = "")
+    },
+    content = function(file) {
+      if(input$Cox_OC_switch == 'OS'){
+        if(input$UM_switch == 'uvm'){
+          write.csv(coxUvmOSData()[[3]], file, row.names = FALSE)
+        } else {
+          write.csv(coxMvmOSData()[[3]], file, row.names = FALSE)
+        }
+      } else {
+        if(input$UM_switch == 'uvm'){
+          write.csv(coxUvmCSSData()[[3]], file, row.names = FALSE)
+        } else {
+          write.csv(coxMvmCSSData()[[3]], file, row.names = FALSE)
+        }
       }
     }
   )

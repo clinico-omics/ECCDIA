@@ -1,3 +1,12 @@
 .skin-blue .main-header .logo {
     background-color: #3b8cbc;
 }
+
+.datatables {
+    margin-top: 10px;
+}
+
+.shiny-download-link {
+    margin-left: calc(100% - 100px);
+    width: 100px;
+}
